@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import json
 import logging
 import multiprocessing
@@ -33,7 +35,8 @@ def main():
 
     config = {}
     try:
-        with open('config.json') as json_data:
+    # To modify for service launch
+        with open('/home/pi/rflink_mqtt_raspberry/config.json') as json_data:
             config = json.load(json_data)
     except Exception as e:
         logger.error("Config load failed")
