@@ -36,6 +36,8 @@ Whole configuration is located in config.json file.
   "mqtt_host": "your.mqtt.host",
   "mqtt_port": 1883,
   "mqtt_prefix": "/data/RFLINK",
+  "mqtt_username": "xxxxx",
+  "mqtt_password": "xxxxx",
   "rflink_tty_device": "/dev/ttyUSB0",
   "rflink_direct_output_params": ["BAT", "CMD", "SET_LEVEL", "SWITCH", "HUM", "CHIME", "PIR", "SMOKEALERT"]
 }
