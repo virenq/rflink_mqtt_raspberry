@@ -47,10 +47,10 @@ class SerialProcess(multiprocessing.Process):
                 else:
                     val = int(d[key], 16) / 10
                 if key == "CMD":
-                    topic_out = "%s/%s/%s/READ/%s" % (family, deviceId, switch, key)
+                    topic_out = "%s/%s/%s/R/%s" % (family, deviceId, switch, key)
                     
                 else:
-                    topic_out = "%s/%s/READ/%s" % (family, deviceId, key)
+                    topic_out = "%s/%s/R/%s" % (family, deviceId, key)
                 self.logger.debug('set topic to: %s' % (topic_out))
                 data_out = {
                     'method': 'publish',
