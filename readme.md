@@ -122,3 +122,4 @@ sudo service rflinkmqtt.service status
 - RFLink Gateway protocol http://www.nemcon.nl/blog2/protref
 - RFLingGateway Fork https://github.com/cephos/RFLinkGateway
 - RFLingGateway https://github.com/Iture/RFLinkGateway
+- Service systemd https://anderson69s.com/2016/10/19/python-systemd/
