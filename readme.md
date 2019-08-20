@@ -75,7 +75,7 @@ File creation:
 `sudo nano /lib/systemd/system/rflinkmqtt.service`
 
 File contents:
-`[Unit]
+```[Unit]
 Description=My Script Service
 After=multi-user.target
 
@@ -84,7 +84,7 @@ Type=idle
 ExecStart=/usr/bin/python /home/pi/rflink_mqtt_raspberry/RFLinkGateway.py
 
 [Install]
-WantedBy=multi-user.target`
+WantedBy=multi-user.target```
 
 Rights management:
 `sudo chmod 644 /lib/systemd/system/rflinkmqtt.service`
