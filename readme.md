@@ -3,7 +3,11 @@
 ## Requirements
 
 Only for raspbian (cf RFLinkGateway.py to modify)
+
+```shell
+sudo apt install python-pip
 pip install tornado pyserial paho-mqtt
+```
 
 ## Purpose
 Bridge between RFLink Gateway and MQTT broker.
@@ -72,33 +76,45 @@ config param | meaning
 ## service
 
 File creation:
-`sudo nano /lib/systemd/system/rflinkmqtt.service`
-
+```shell
+sudo nano /lib/systemd/system/rflinkmqtt.service
+```
 File contents:
-```[Unit]
-Description=My Script Service
-After=multi-user.target
+```
+    [Unit]
+    Description=My Script Service
+    After=multi-user.target
+    
+    [Service]
+    Type=idle
+    ExecStart=/usr/bin/python /home/pi/rflink_mqtt_raspberry/RFLinkGateway.py
+    
+    [Install]
+    WantedBy=multi-user.target
 
-[Service]
-Type=idle
-ExecStart=/usr/bin/python /home/pi/rflink_mqtt_raspberry/RFLinkGateway.py
-
-[Install]
-WantedBy=multi-user.target```
+```
 
 Rights management:
-`sudo chmod 644 /lib/systemd/system/rflinkmqtt.service`
+```shell
+sudo chmod 644 /lib/systemd/system/rflinkmqtt.service
+```
 
 
 Validate and restart services:
-`sudo systemctl daemon-reload`
-`sudo systemctl enable`
+```shell
+sudo systemctl daemon-reload
+sudo systemctl enable
+```
 
 Restart the computer
-`sudo reboot`
+```shell
+sudo reboot
+```
 
 Check
-`sudo service rflinkmqtt.service status`
+```shell
+sudo service rflinkmqtt.service status
+```
 
 
 ## References
