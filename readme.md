@@ -66,3 +66,5 @@ Every change should be published to topic:
 ## References
 - RFLink Gateway project http://www.nemcon.nl/blog2/
 - RFLink Gateway protocol http://www.nemcon.nl/blog2/protref
+- RFLingGateway Fork https://github.com/cephos/RFLinkGateway
+- RFLingGateway https://github.com/Iture/RFLinkGateway
