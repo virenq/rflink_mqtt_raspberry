@@ -48,6 +48,8 @@ config param | meaning
 | mqtt_host | MQTT broker host |
 | mqtt_port | MQTT broker port|
 | mqtt_prefix | prefix for publish and subscribe topic|
+| mqtt_username | MQTT broker user|
+| mqtt_password | MQTT broker password|
 | rflink_tty_device | Arduino tty device |
 | rflink_ignored_devices | Parameters transferred to MQTT without any processing|
 
