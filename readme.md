@@ -1,9 +1,14 @@
 # RFLink Gateway to MQTT
 
+## Requirements
+
+Only for raspbian (cf RFLinkGateway.py to modify)
+pip install tornado pyserial paho-mqtt
+
 ## Purpose
 Bridge between RFLink Gateway and MQTT broker.
 
-## Current features
+## Input data
 Forwarding messages received on TTY port from RFLink Gateway Arduino board
 to MQTT broker in both directions.
 
@@ -26,6 +31,17 @@ Message:
 
 Every message received on particular MQTT topic is translated to
 RFLink Gateway and sent to 433 MHz.
+
+## Output data
+Application pushes informations to MQTT broker in following format:
+[mqtt_prefix]/[device_type]/[device_id]/R/[parameter]
+
+`/data/RFLINK/TriState/8556a8/W/1 OFF`
+
+Every change should be published to topic:
+[mqtt_prefix]/[device_type]/[device_id]/W/[switch_ID]
+
+`/data/RFLINK/TriState/8556a8/W/1 ON`
 
 ## Configuration
 
@@ -53,16 +69,36 @@ config param | meaning
 | rflink_tty_device | Arduino tty device |
 | rflink_ignored_devices | Parameters transferred to MQTT without any processing|
 
-## Output data
-Application pushes informations to MQTT broker in following format:
-[mqtt_prefix]/[device_type]/[device_id]/R/[parameter]
+## service
 
-`/data/RFLINK/TriState/8556a8/W/1 OFF`
+File creation:
+`sudo nano /lib/systemd/system/rflinkmqtt.service`
 
-Every change should be published to topic:
-[mqtt_prefix]/[device_type]/[device_id]/W/[switch_ID]
+File contents:
+`[Unit]
+Description=My Script Service
+After=multi-user.target
 
-`/data/RFLINK/TriState/8556a8/W/1 ON`
+[Service]
+Type=idle
+ExecStart=/usr/bin/python /home/pi/rflink_mqtt_raspberry/RFLinkGateway.py
+
+[Install]
+WantedBy=multi-user.target`
+
+Rights management:
+`sudo chmod 644 /lib/systemd/system/rflinkmqtt.service`
+
+
+Validate and restart services:
+`sudo systemctl daemon-reload`
+`sudo systemctl enable`
+
+Restart the computer
+`sudo reboot`
+
+Check
+`sudo service rflinkmqtt.service status`
 
 
 ## References
